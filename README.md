@@ -1,7 +1,11 @@
 # inpair
 InPost data driven air quality visualisation across Poland
 
-Designed to run as AWS Lambda Function and save results to an S3 bucket which then serves a static website
+Possible thanks to InPost exposing their [API ShipX](https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/622754/API+ShipX)
+
+
+Designed to run as AWS Lambda Function and save results to an S3 bucket which then serves a static website.
+Lambda is triggered each hour refreshing the data.
 
 http://inpair.s3-website-eu-west-1.amazonaws.com/
 
