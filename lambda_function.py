@@ -39,9 +39,8 @@ def lambda_handler(event, context):
     else:
         print(page_count.status_code)
     
-    # Go through all the pages to get all the points that report air_index_level
+    # Go through all the pages to get all the points that report air_index_level (not None)
     # add them to the map with appropriate colour
-
     for i in range(1,total_pages+1):
         params = {'page': i,}
         print(i)
@@ -65,10 +64,11 @@ def lambda_handler(event, context):
     
         else:
             print(response.status_code)
-    # Save the map to an HTML file
+            
+    # Save the map as a (/tmp required by Lambda) HTML file
     my_map.save("/tmp/index.html")
     
-    # Upload HTML file to S3
+    # Upload file to S3
     bucket_name = "inpair"
     s3_object_key = "index.html"
     content_type = "text/html"
@@ -90,7 +90,6 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': f'An error occurred: {e}'
         }
-
     return {
         'statusCode': 200,
         'body': 'HTML file uploaded to S3 successfully.'
