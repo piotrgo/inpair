@@ -64,7 +64,12 @@ def lambda_handler(event, context):
     
         else:
             print(response.status_code)
-            
+
+    # Add the current date as a text label as the title
+    current_date = datetime.now().strftime("%H:%M %d.%m.%Y")
+    title_html = f'<h1 style="position:absolute;z-index:100000;left:35vw" >Dane pobrano o godzinie {current_date}</h1>'
+    my_map.get_root().html.add_child(folium.Element(title_html))
+    
     # Save the map as a (/tmp required by Lambda) HTML file
     my_map.save("/tmp/index.html")
     
