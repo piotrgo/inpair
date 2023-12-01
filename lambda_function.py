@@ -54,9 +54,9 @@ def lambda_handler(event, context):
                 if point["air_index_level"] is not None:
                     color_code = air_quality_index_to_color_code[point["air_index_level"]]
                     air_quality_index = point["air_index_level"]
-                    folium.CircleMarker(location=[point['location']['latitude'], 
+                    folium.Circle(location=[point['location']['latitude'], 
                                             point['location']['longitude']],
-                                            radius=25,
+                                            radius=500,
                                             fill_opacity=0.6,
                                             fill_color=color_code,
                                             stroke=False,
@@ -75,7 +75,7 @@ def lambda_handler(event, context):
     my_map.save("/tmp/index.html")
     
     # Upload file to S3
-    bucket_name = "inpair"
+    bucket_name = "www.inpair.pl"
     s3_object_key = "index.html"
     content_type = "text/html"
 
