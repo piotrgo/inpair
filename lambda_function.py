@@ -28,9 +28,9 @@ def lambda_handler(event, context):
         "VERY_GOOD": "green",
         "GOOD": "lightgreen",
         "SATISFACTORY": "orange",
-        "MODERATE": "orange",
-        "BAD": "red",
-        "VERY_BAD": "darkred"
+        "MODERATE": "red",
+        "BAD": "darkred",
+        "VERY_BAD": "black"
     }
 
     # Get number of pages with points
@@ -56,7 +56,7 @@ def lambda_handler(event, context):
                     air_quality_index = point["air_index_level"]
                     folium.Circle(location=[point['location']['latitude'], 
                                             point['location']['longitude']],
-                                            radius=500,
+                                            radius=750,
                                             fill_opacity=0.6,
                                             fill_color=color_code,
                                             stroke=False,
